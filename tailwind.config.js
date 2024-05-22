@@ -4,13 +4,21 @@ module.exports = {
     "./pages/**/*.{js,ts,jsx,tsx,mdx}",
     "./components/**/*.{js,ts,jsx,tsx,mdx}",
     "./app/**/*.{js,ts,jsx,tsx,mdx}",
+    "./src/**",
+    "./assets/**"
   ],
   theme: {
     extend: {
+      colors:{
+        primary: '#DCDCDD',
+        secondary: '#1985A1',
+        terciary:'#46494C'
+      },
+      fontFamily:{
+        'sans':['Inter','sans-serif']
+      },
       backgroundImage: {
-        "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
-        "gradient-conic":
-          "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
+        'soon':"url('/public/images/joel-muniz-A4Ax1ApccfA-unsplash.jpg')"
       },
     },
   },
