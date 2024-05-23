@@ -1,9 +1,10 @@
+'use client'
 import Image from "next/image";
 import logoCC from "../assets/img/logocc.png" 
 import fbIcon from "../assets/svg/facebook1.svg"
 import waIcon from "../assets/svg/whatsapp1.svg"
 import style from "../styles/Home.module.css"
-import Image2 from "../src/images/image1.jpeg"
+
 export default function Home() {
   return (
     <main className="flex min-h-screen flex-col items-center justify-between">
