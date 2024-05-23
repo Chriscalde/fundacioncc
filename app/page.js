@@ -17,7 +17,7 @@ export default function Home() {
           <a href="https://www.facebook.com/profile.php?id=100044643034540" target="_blank" rel="noopener noreferrer">
             <Image src={fbIcon} color="#DCDCDD" width={40} height={40} className="mx-5"/>
           </a>
-          <a href="tel:+526394650034">
+          <a href="https://wa.me/526394650034?text=Quisiera%20mas%20informaci&oacute;n%20" target="_blank" rel="noopener noreferrer">
             <Image src={waIcon} color="#DCDCDD" width={40} height={40}/>
           </a>
         </div>
