@@ -6,7 +6,7 @@ const inter = Inter({ subsets: ["latin"] });
 export const metadata = {
   title: "Fundación Carlos Cuevas",
   description: "Próximamente",
-  icon: favicon
+  icon: '../app/favicon.ico'
 };
 
 export default function RootLayout({ children }) {
