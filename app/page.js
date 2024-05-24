@@ -23,9 +23,11 @@ export default function Home() {
         </div>
       </div>
       <div className={styles.maindiv} >
-          <div className="text-center my-auto">
+          <div className="text-center my-auto flex flex-col">
             <h1 className="text-secondary md:text-6xl text-5xl font-bold">Próximamente</h1>
             <h2 className="text-primary md:text-2xl text-xl font-semibold italic">¡Algo Grande Está en Camino!</h2>
+            <h3 className="mt-10 text-primary">Para más información unete a nuestro grupo de WhatsApp</h3>
+            <a href="https://chat.whatsapp.com/IutDpHYCUdJ6NgHxb4UPlu" target="_blank" rel="noopener noreferrer" className="p-2 mx-auto mt-2 rounded border-secondary border-2 text-secondary font-semibold">Unirse al Grupo</a>
           </div>
       </div>
       <footer className="bg-secondary md:flex md:flex-row w-full text-center justify-center items-center align-middle py-4 md:py-2 bottom-0 h-full">
