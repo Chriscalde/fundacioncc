@@ -12,13 +12,14 @@ module.exports = {
       colors:{
         primary: '#DCDCDD',
         secondary: '#1985A1',
-        terciary:'#46494C'
+        terciary:'#46494C',
+        grayText: '#C5C3C6'
       },
       fontFamily:{
         'sans':['Inter','sans-serif']
       },
       backgroundImage: {
-        'soon':"url('/public/images/joel-muniz-A4Ax1ApccfA-unsplash.jpg')"
+        'soon':'url(/assets/img/back2.jpeg)'
       },
     },
   },
