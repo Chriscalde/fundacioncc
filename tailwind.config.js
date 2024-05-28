@@ -13,7 +13,8 @@ module.exports = {
         primary: '#DCDCDD',
         secondary: '#1985A1',
         terciary:'#46494C',
-        grayText: '#C5C3C6'
+        grayText: '#C5C3C6',
+        blueGray: "#4c5c68"
       },
       fontFamily:{
         'sans':['Inter','sans-serif']

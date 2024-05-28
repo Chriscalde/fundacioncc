@@ -6,7 +6,7 @@ import fbIcon from "../assets/svg/facebook1.svg"
 import waIcon from "../assets/svg/whatsapp1.svg"
 export default function ContactFooter(){
     return(
-        <div className="w-full md:grid md:grid-cols-5 flex flex-col gap-5 bg-secondary p-10">
+        <div className="w-full md:grid md:grid-cols-5 flex flex-col gap-5 bg-secondary p-10" id="contact">
             <div className="col-span-3 flex flex-col text-left my-auto text-primary">
                 <h1 className="text-4xl font-bold">Contacto</h1>
                 <h2 className="text-xl font-semibold mb-5">¿Tienes preguntas o comentarios? ¡Estamos aquí para ayudarte!</h2>
