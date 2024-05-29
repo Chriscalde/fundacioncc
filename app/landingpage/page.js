@@ -3,7 +3,7 @@ import React from "react";
 import Header from "@/components/Header";
 import ContactFooter from "@/components/ContactFooter";
 import Footer from "@/components/Footer";
-
+import Head from "next/head";
 import styles from "@/styles/Home.module.css"
 import Link from "next/link";
 import Image from "next/image";
@@ -16,6 +16,9 @@ import pic3 from "/assets/img/pic3.jpg"
 export default function LandingPage(){
     return (
         <div>
+            <Head>
+            <link rel="icon" href="/favicon.ico"/>
+            </Head>
             <Header/>
             <section id="hero" className={styles.maindiv}>
                 <div className="justify-center text-center flex flex-col my-auto">
