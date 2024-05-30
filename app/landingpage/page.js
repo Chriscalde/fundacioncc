@@ -64,7 +64,7 @@ export default function LandingPage(){
             </section>
             <section id="nosotros" className="bg-terciary p-8 text-primary">
                 <div className="md:text-right text-center ltr:w-1/2">
-                    <h1 className="text-5xl font-bold">Nosotros</h1>
+                    <h1 className="text-5xl font-bold text-grayText">Nosotros</h1>
                     <h2 className="text-3xl font-semibold mt-6">Acerca de Nuestra Causa</h2>
                     <p className="text-lg font-semibold md:w-1/2 md:ml-auto">[Descripción breve de la causa que están apoyando a través de las rifas. Explica el propósito, la importancia y el impacto que tiene en la comunidad.]</p>
                 </div>

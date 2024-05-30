@@ -30,7 +30,7 @@ export default function Home() {
             <a href="https://chat.whatsapp.com/IutDpHYCUdJ6NgHxb4UPlu" target="_blank" rel="noopener noreferrer" className="p-2 mx-auto mt-2 rounded border-secondary border-2 text-secondary font-semibold">Unirse al Grupo</a>
           </div>
       </div>
-      <footer className="bg-secondary md:flex md:flex-row w-full text-center justify-center items-center align-middle py-4 md:py-2 bottom-0 h-full">
+      <footer className="bg-secondary md:flex md:flex-row w-full text-center justify-center items-center align-middle py-4 md:py-2 bottom-0 h-full text-xs md:text-base">
         <a href="https://raptordevs.com" target="_blank" rel="noopener noreferrer" className="text-primary mx-auto flex flex-grow justify-center items-center">
           <span className="mr-2">&copy; Fundación Carlos Cuevas | </span>
           Powered by {' '}

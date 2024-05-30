@@ -2,7 +2,7 @@ import React from "react"
 import Image from "next/image"
 import Link from "next/link"
 
-import logoCC from "../assets/img/logocc_azul.png"
+import logoCC from "../assets/img/logocc2.png"
 import iconFb from "../assets/svg/facebook.svg"
 import iconWa from "../assets/svg/whatsapp.svg"
 export default function Header(){

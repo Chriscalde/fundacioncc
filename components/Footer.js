@@ -5,8 +5,8 @@ import rLogo from "../assets/svg/raptorslogo.svg"
 
 export default function Footer(){
     return(
-        <div className="w-full p-2 bg-secondary border border-t-2 border-primary">
-            <a href="https://raptordevs.com" target="_blank" rel="noopener noreferrer" className="text-primary mx-auto flex flex-grow justify-center items-center">
+        <div className="w-full p-2 bg-secondary  border-t-2 border-primary">
+            <a href="https://raptordevs.com" target="_blank" rel="noopener noreferrer" className="text-primary mx-auto flex flex-grow justify-center items-center text-xs md:text-base">
                 <span className="md:mr-2">&copy; Fundación Carlos Cuevas 2024 | </span>
                     Powered by {' '}
                 <span className=" ">
