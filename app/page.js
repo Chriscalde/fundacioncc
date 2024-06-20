@@ -1,6 +1,6 @@
 'use client'
 import Image from "next/image";
-import logoCC from "../assets/img/logocc.png" 
+import logoCC from "../assets/img/logoNFP.png" 
 import fbIcon from "../assets/svg/facebook1.svg"
 import waIcon from "../assets/svg/whatsapp1.svg"
 import styles from "../styles/Home.module.css"
@@ -9,9 +9,9 @@ import rLogo from "../assets/svg/raptorslogo.svg"
 export default function Home() {
   return (
     <main className="flex h-screen flex-col items-center justify-normal bg-primary p-0">
-      <div className="flex flex-wrap bg-secondary w-full p-2">
+      <div className="flex flex-wrap bg-secondary w-full p-4">
         <div className="mr-auto">
-          <Image src={logoCC} width={100} height={100}/>
+          <Image src={logoCC} width={80} height={80}/>
         </div>
         <div className="my-auto flex flex-row">
           <a href="https://www.facebook.com/profile.php?id=100044643034540" target="_blank" rel="noopener noreferrer">
@@ -32,7 +32,7 @@ export default function Home() {
       </div>
       <footer className="bg-secondary md:flex md:flex-row w-full text-center justify-center items-center align-middle py-4 md:py-2 bottom-0 h-full text-xs md:text-base">
         <a href="https://raptordevs.com" target="_blank" rel="noopener noreferrer" className="text-primary mx-auto flex flex-grow justify-center items-center">
-          <span className="mr-2">&copy; Fundación Carlos Cuevas | </span>
+          <span className="mr-2">&copy; Fundación Carlos Cuevas 2024 | </span>
           Powered by {' '}
           <span className=" ">
             <Image src={rLogo} alt="logo" width={80} height={60}></Image>
