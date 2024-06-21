@@ -220,24 +220,24 @@ export default function Rifas(){
                     <h1 className="text-6xl text-terciary font-bold">RIFA iPhone 15 Pro Max</h1>
                     <h2 className="text-4xl text-secondary font-semibold">*15 de Junio</h2>
                     <h3 className="text-2xl text-secondary font-normal">Precio del Boleto: $50 Pesos</h3>
-                    <div className="grid grid-cols-3 gap-24 items-center justify-center mx-auto" >
-                        <div id="premioMayor" className="flex flex-col text-center mt-6">
-                            <Image src={p1} className="rounded-2xl border-4 border-secondary shadow-xl" alt="p1" style={{width: "370px", height: "240px" ,objectFit: "cover"}}/>
+                    <div className="grid grid-cols-3 gap-24 items-center justify-center mx-auto mt-4" >
+                        <div id="premioSegundo" className="flex flex-col text-center">
+                            <Image src={p2} className="rounded-2xl border-4 border-secondary shadow-xl" alt="p1" style={{width: "370px", height: "240px" ,objectFit: "cover"}}/>
+                            <h2 className="font-bold text-secondary text-3xl mt-4">Segundo Premio</h2>
+                            <p className="font-semibold text-secondary text-lg">$1000 Pesos</p>
+                        </div>
+                        <div id="premioMayor" className="flex flex-col text-center">
+                            <Image src={p1} className="rounded-2xl border-4 border-secondary shadow-xl" alt="p2" style={{width: "370px", height: "240px" ,objectFit: "cover"}}/>
                             <h2 className="font-bold text-secondary text-3xl mt-4">Premio Mayor</h2>
                             <p className="font-semibold text-secondary text-lg">iPhone 15 Pro Max</p>
                         </div>
-                        <div id="premioMayor" className="flex flex-col text-center">
-                            <Image src={p2} className="rounded-2xl border-4 border-secondary shadow-xl" alt="p2" style={{width: "370px", height: "240px" ,objectFit: "cover"}}/>
-                            <h2 className="font-bold text-secondary text-3xl">Premio Mayor</h2>
-                            <p className="font-semibold text-secondary text-lg">iPhone 15 Pro Max</p>
-                        </div>
-                        <div id="premioMayor" className="flex flex-col text-center">
+                        <div id="premioTercero" className="flex flex-col text-center">
                             <Image src={p3} className="rounded-2xl border-4 border-secondary shadow-xl" alt="p3" style={{width: "370px", height: "240px" ,objectFit: "cover"}}/>
-                            <h2 className="font-bold text-secondary text-3xl">Premio Mayor</h2>
-                            <p className="font-semibold text-secondary text-lg">iPhone 15 Pro Max</p>
+                            <h2 className="font-bold text-secondary text-3xl mt-4">Tercer Premio</h2>
+                            <p className="font-semibold text-secondary text-lg">$500 Pesos</p>
                         </div>
                     </div>
-                    <Link className="rounded-[20px] px-4 py-2 bg-secondary text-primary text-3xl mx-auto font-bold hover:bg-blueGray duration-300" href="#form-rifa" scroll={true}>PARTICIPAR</Link>
+                    <Link className="rounded-[20px] px-4 py-2 bg-secondary text-primary text-3xl mx-auto mt-4 font-bold hover:bg-blueGray duration-300" href="#form-rifa" scroll={true}>PARTICIPAR</Link>
                     <button type="button" className="mt-4 border-4 border-terciary text-terciary font-semibold text-2xl mx-auto px-4 py-1 rounded-full hover:bg-terciary hover:text-primary duration-300">Mas Información</button>
                 </section>
                 <section className="pt-24 pb-24 bg-primary justify-center items-center scroll-smooth" id="form-rifa">
