@@ -24,8 +24,8 @@ export default function LandingPage(){
                 <div className="justify-center text-center flex flex-col my-auto">
                     <h1 className="text-6xl text-grayText font-bold">RIFAS PARA UNA BUENA CAUSA</h1>
                     <h2 className="text-xl mt-3 font-semibold text-primary">¡Participa en Nuestras Rifas y Ayúdanos a Cambiar Vidas!</h2>
-                    <Link className="bg-secondary hover:bg-terciary duration-300 rounded-xl text-primary mx-auto mt-12 p-4 text-2xl font-bold" href="">PARTICIPAR</Link>
-                    <Link className="rounded-full border-4 border-grayText hover:bg-grayText hover:text-terciary duration-300 text-grayText mx-auto mt-4 px-6 py-2 text-xl font-bold" href="#contact" scroll={false}>Mas Información</Link>
+                    <Link className="bg-secondary hover:bg-terciary duration-300 rounded-xl text-primary mx-auto mt-12 p-4 text-2xl font-bold" href="/rifas">PARTICIPAR</Link>
+                    <Link className="rounded-full border-4 border-grayText hover:bg-grayText hover:text-terciary duration-300 text-grayText mx-auto mt-4 px-6 py-2 text-xl font-bold" href="#rifa">Mas Información</Link>
                 </div>
             </section>
             <section id="participar" className="bg-blueGray p-8">
@@ -59,7 +59,7 @@ export default function LandingPage(){
                     <h2 className="text-3xl font-light">Tercer Premio: $500 Pesos</h2>
                 </div>
                 <div className="p-8 text-center md:text-right">
-                    <Link href="" className="mt-10 rounded-full py-2 px-6 border-2 border-secondary text-secondary hover:bg-secondary hover:text-primary duration-300 font-bold text-2xl">Comprar Boletos</Link>
+                    <Link href="/rifas" className="mt-10 rounded-full py-2 px-6 border-2 border-secondary text-secondary hover:bg-secondary hover:text-primary duration-300 font-bold text-2xl">Comprar Boletos</Link>
                 </div>
             </section>
             <section id="nosotros" className="bg-terciary p-8 text-primary">

@@ -7,8 +7,9 @@ import HeaderD from "@/components/DashboardHeader"
 import Footer from "@/components/Footer";
 import ProgressBar from "@/components/ProgressBar";
 import InfoModal from "@/components/InfoModal";
+import EditInfoModal from "@/components/EditInfo";
 
-import { EyeIcon, PencilSquareIcon, TrashIcon } from "@heroicons/react/24/solid";
+import { EyeIcon, MagnifyingGlassCircleIcon, PencilSquareIcon, TrashIcon } from "@heroicons/react/24/solid";
 import axios from "@/lib/axiosConfig";
 import { useRouter } from "next/navigation";
 export default function Dashboard(){
@@ -31,10 +32,42 @@ export default function Dashboard(){
         total: 0,
         lastUpdated: null
     });
+    const [ticketsInfo,setTicketsInfo]=useState([])
     const [customers,setCustomers]=useState([]);
     const priceTicket = 50;
     const [isModalOpen, setIsModalOpen] = useState(false);
+    const [isEditModalOpen, setIsEditModalOpen] = useState(false);
     const [customerId,setCustomerId] = useState('')
+
+    const [searchTicketValue,setSearchTicketValue] = useState('')
+    const [foundTicket,setFoundTicket] = useState(null);
+
+    const [searchQuery,setSearchQuery] = useState('');
+
+
+    const pageLimit = 20;
+
+    const handleSearch = (event) => {
+        setSearchQuery(event.target.value);
+    }
+
+    const filteredCustomers = customers.filter(customer=>
+        customer.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        customer.phone.includes(searchQuery)
+    )
+    const handleTicket = (event) => {
+        const value = event.target.value;
+        if(/^\d{0,4}$/.test(value)){
+            setSearchTicketValue(value);
+        }
+    }
+
+    const searchForTicket = () => {
+        if(searchTicketValue.length === 4){
+            const foundTicket = ticketsInfo.find((item)=>(item.number)===searchTicketValue)
+            setFoundTicket(foundTicket)
+        }
+    }
 
     const openModal = (customerId) => {
         setIsModalOpen(true);
@@ -43,6 +76,14 @@ export default function Dashboard(){
 
     const closeModal = () => {
         setIsModalOpen(false);
+    };    
+    const openEditModal = (customerId) => {
+        setIsEditModalOpen(true);
+        setCustomerId(customerId);
+    };
+
+    const closeEditModal = () => {
+        setIsEditModalOpen(false);
     };    
     const getUserInfo = async()=>{
         const token = localStorage.getItem('token')
@@ -78,6 +119,7 @@ export default function Dashboard(){
                 total: total,
                 lastUpdated: lastUpdated
             })
+            setTicketsInfo(data);
         } catch(e){
             console.log(e);
         }
@@ -108,16 +150,27 @@ export default function Dashboard(){
                         <div className="flex flex-col p-10">
                             <h1 className="text-secondary text-5xl font-bold">Bienvenido {userData.name}</h1>
                             <div id="buscar-cliente" className="align-right items-end mt-2 ml-auto">
-                                <input type="search" placeholder="Buscar" className="p-2 rounded-lg font-semibold"></input>
+                                <input type="search" placeholder="Buscar" className="p-2 rounded-lg font-semibold ring-secondary outline-secondary" value={searchQuery} onChange={handleSearch}></input>
                             </div>
                             <section id="dashboard-tables" className="md:grid md:grid-cols-5 flex flex-col gap-6 pt-6">
-                                <div id="dashboard-left-tables" className="flex flex-col justify-between col-span-1">
+                                <div id="dashboard-left-tables" className="flex flex-col justify-between gap-4  col-span-1">
                                     <div id="dashboard-table-tickets" className="bg-grayText rounded-xl shadow-lg p-4 items-center align-middle text-center flex flex-col gap-4">
                                         <h1 className="text-terciary font-bold text-2xl ">Boletos</h1>
                                         <h2 className="text-primary font-semibold text-xl">{ticketsData.sold} de {ticketsData.total}</h2>
                                         <ProgressBar sold={ticketsData.sold} total={ticketsData.total}/>
                                         <h2 className="text-primary font-semibold text-xl">Ultimo Vendido</h2>
                                         <p className="p-1 bg-secondary text-primary font-semibold text-xl rounded-md w-[30%] mx-auto">{ticketsData.lastUpdated}</p>
+                                        <div className="flex flex-row gap-2">
+                                            <input id="search-tickets" type="text" className="bg-primary rounded-md p-2 font-semibold outline-secondary" placeholder="Buscar Boleto" value={searchTicketValue} onChange={handleTicket}></input>
+                                            <button className="my-auto" onClick={searchForTicket}><MagnifyingGlassCircleIcon className="size-8 text-secondary"/></button>
+                                        </div>
+                                        {foundTicket && (
+                                            <div className="mt-2">
+                                                <div className={`font-semibold text-primary rounded-lg ${foundTicket.status==='sold'?'bg-secondary':'bg-terciary'}`}>{foundTicket.number}</div>
+                                                <div className="font-semibold text-terciary">{foundTicket.status==='sold'?'Vendido':'Disponible'}</div>
+                                            </div>
+                                        )}
+
                                     </div>
                                     <div id="dashboard-table-costs" className="bg-grayText rounded-xl shadow-lg p-4 text-center items-center align-middle flex flex-col gap-4">
                                         <h1 className="text-terciary font-bold text-2xl ">Costos</h1>
@@ -138,7 +191,7 @@ export default function Dashboard(){
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            {customers.map(item=>(
+                                            {filteredCustomers.map(item=>(
                                                 <tr key={item.id} className="text-center text-lg border-t-2 border-terciary/25">
                                                     <td className="text-terciary">{item.name}</td>
                                                     <td className="text-terciary">{item.phone}</td>
@@ -152,7 +205,7 @@ export default function Dashboard(){
                                                             <button className="my-auto">
                                                                 <TrashIcon className="h-4 w-4 hover:scale-125 ease-in duration-300 hover:text-secondary"/>
                                                             </button>
-                                                            <button className="my-auto">
+                                                            <button className="my-auto" onClick={() => openEditModal(item.id)}>
                                                                 <PencilSquareIcon className="h-4 w-4 hover:scale-125 ease-in duration-300 hover:text-secondary"/>
                                                             </button>
 
@@ -171,8 +224,9 @@ export default function Dashboard(){
             </main>
             <Footer/>
             <InfoModal isOpen={isModalOpen} onClose={closeModal} customerId={customerId}>
-                <h2>Modal Titler</h2>
             </InfoModal>
+            <EditInfoModal isOpen={isEditModalOpen} onClose={closeEditModal} customerId={customerId}>
+            </EditInfoModal>
         </div>
     )
 }
