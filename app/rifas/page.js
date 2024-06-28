@@ -72,8 +72,9 @@ export default function Rifas(){
 
             if(response.status === 200){
                 const imageUrl = `https://fundacion-images-bucket.s3.amazonaws.com/${imageTitle}`
+                try {
                 const resOrder = await axios.get('customer/getLastOrder')
-                const lastOrder = resOrder.data.data.orderNumber
+                const lastOrder = resOrder.data.data ? resOrder.data.data.orderNumber : 0
                 // console.log(lastOrder)
                 setFormData((prevData)=>({
                     ...prevData,
@@ -82,6 +83,17 @@ export default function Rifas(){
                     orderNo: lastOrder+1
                 }));
                 setStep(activeStep+1);
+                } catch(error) {
+                    console.error('Error fetching last order',error )
+                    setFormData((prevData)=>({
+                        ...prevData,
+                        imgURL: imageUrl,
+                        verified: true,
+                        orderNo: 1
+                    }));
+                }
+                
+                
             }
             //   setUploadStatus('File uploaded successfully: ' + response.data.fileUrl)
               
@@ -202,7 +214,7 @@ export default function Rifas(){
         tickets: [],
         imgURL: "",
         verified: null,
-        orderNo : null
+        orderNo : 1
     })
     const showDiv =async(e)=>{
         e.preventDefault();

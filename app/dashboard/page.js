@@ -8,6 +8,7 @@ import Footer from "@/components/Footer";
 import ProgressBar from "@/components/ProgressBar";
 import InfoModal from "@/components/InfoModal";
 import EditInfoModal from "@/components/EditInfo";
+import DeleteCustomerModal from "@/components/DeleteCustomerModal";
 
 import { EyeIcon, MagnifyingGlassCircleIcon, PencilSquareIcon, TrashIcon } from "@heroicons/react/24/solid";
 import axios from "@/lib/axiosConfig";
@@ -37,6 +38,7 @@ export default function Dashboard(){
     const priceTicket = 50;
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [isEditModalOpen, setIsEditModalOpen] = useState(false);
+    const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
     const [customerId,setCustomerId] = useState('')
 
     const [searchTicketValue,setSearchTicketValue] = useState('')
@@ -96,6 +98,16 @@ export default function Dashboard(){
 
     const closeEditModal = () => {
         setIsEditModalOpen(false);
+    };    
+    const openDeleteModal = (customerId) => {
+        setIsDeleteModalOpen(true);
+        setCustomerId(customerId);
+    };
+
+    const closeDeleteModal = () => {
+        setIsDeleteModalOpen(false);
+        getCustomers();
+        getTickets();
     };    
     const getUserInfo = async()=>{
         const token = localStorage.getItem('token')
@@ -222,7 +234,7 @@ export default function Dashboard(){
                                                             <button className="py-auto" onClick={()=> openModal(item.id)}>
                                                                 <EyeIcon className="h-4 w-4 hover:scale-125 ease-in duration-300 hover:text-secondary"/>
                                                             </button>
-                                                            <button className="my-auto">
+                                                            <button className="my-auto" onClick={() => openDeleteModal(item.id)}>
                                                                 <TrashIcon className="h-4 w-4 hover:scale-125 ease-in duration-300 hover:text-secondary"/>
                                                             </button>
                                                             <button className="my-auto" onClick={() => openEditModal(item.id)}>
@@ -247,6 +259,8 @@ export default function Dashboard(){
             </InfoModal>
             <EditInfoModal isOpen={isEditModalOpen} onClose={closeEditModal} customerId={customerId}>
             </EditInfoModal>
+            <DeleteCustomerModal isOpen={isDeleteModalOpen} onClose={closeDeleteModal} customerId={customerId}>
+            </DeleteCustomerModal>
         </div>
     )
 }
