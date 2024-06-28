@@ -15,10 +15,10 @@ export default function ContactFooter(){
                 <a className="text-lg text-center md:text-left" href="https://wa.me/526394650034?text=Quisiera%20mas%20informaci&oacute;n%20">WhatsApp: 639 465 00 34 </a>
             </div>
             <div className="col-span-2 flex flex-col justify-center">
-                <Image src={logoCC} width={250} className="mx-auto my-4" alt="logoContact"/>
+                <Image src={logoCC}  height='auto' className="mx-auto my-4 md:w-[250px] w-[100px] " alt="logoContact"/>
                 <div className="flex flex-row justify-center gap-5 px-10">
-                <a href="https://www.facebook.com/profile.php?id=100044643034540" target="_blank" rel="noopener noreferrer"><Image src={fbIcon} width={80} alt="facebook_icon"/></a>
-                <a href="https://wa.me/526394650034?text=Quisiera%20mas%20informaci&oacute;n%20" target="_blank" rel="noopener noreferrer"><Image src={waIcon} width={80} alt="whatsapp_icon"/></a>
+                <a href="https://www.facebook.com/profile.php?id=100044643034540" target="_blank" rel="noopener noreferrer"><Image src={fbIcon} className="md:w-[80px] w-[40px]" height='auto' alt="facebook_icon"/></a>
+                <a href="https://wa.me/526394650034?text=Quisiera%20mas%20informaci&oacute;n%20" target="_blank" rel="noopener noreferrer"><Image src={waIcon} className="md:w-[80px] w-[40px]" height='auto' alt="whatsapp_icon"/></a>
                 </div>
             </div>
         </div>

@@ -16,7 +16,7 @@ const Header=()=>{
     return (
         <div id="header" className="flex md:flex-row flex-col p-5 bg-primary w-full">
             <div id="headerlogo" className="md:mr-auto mx-auto md:ml-0">
-                <Image src={logoCC} width={128} height='auto' alt="Logo FCC"/>
+                <Image src={logoCC} className="md:w-[100px] w-[80px]"  height='auto' alt="Logo FCC"/>
             </div>
             {!shouldHideDiv && (
             <div id="headersections" className="flex flex-wrap p-4">
