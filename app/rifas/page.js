@@ -5,6 +5,7 @@ import axiosImg from "axios";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import ContactFooter from "@/components/ContactFooter";
+import InfoRifa from "@/components/InfoRifa";
 
 import Image from "next/image";
 import Link from "next/link";
@@ -13,7 +14,7 @@ import p1 from "/assets/img/ip15.jpeg"
 import p2 from "/assets/img/1000.jpeg"
 import p3 from "/assets/img/500p.jpeg"
 
-import {ArrowRightIcon, CameraIcon, ChevronRightIcon, ChevronLeftIcon} from "@heroicons/react/24/solid"
+import {ArrowRightIcon, CameraIcon, ChevronRightIcon, ChevronLeftIcon, MagnifyingGlassCircleIcon} from "@heroicons/react/24/solid"
 
 import { useState } from "react";
 import tailwindConfig from "@/tailwind.config";
@@ -29,7 +30,10 @@ export default function Rifas(){
     const [isMounted,setIsMounted] = useState(false)
     const limit = 50;
     const router = useRouter();
-    
+    const [isModalOpen, setIsModalOpen] = useState(false);
+    const [searchTicketValue,setSearchTicketValue] = useState('')
+
+
     useEffect(() => {
         fetchData();
         setIsMounted(true);
@@ -37,7 +41,13 @@ export default function Rifas(){
     const handleFileChange = (event) => {
         setSelectedFile(event.target.files[0]);
       };
-    
+    const openModal = () => {
+        setIsModalOpen(true);
+    };
+
+    const closeModal = () => {
+        setIsModalOpen(false);
+    };
     
 
     const handleUpload = async()=>{
@@ -50,7 +60,7 @@ export default function Rifas(){
         const nameTxt = formData.name.substring(0,3).toLocaleLowerCase() , lNameTxt = formData.lastName.substring(0,3).toLocaleLowerCase()
         const extension = selectedFile.type.split('/')[1];
         const imageTitle = nameTxt+lNameTxt+formData.phone+'.'+extension;
-        console.log(imageTitle)
+        // console.log(imageTitle)
         try{
             const response = await axiosImg.put(`https://hnouee5av8.execute-api.us-east-1.amazonaws.com/test2/fundacion-images-bucket/${imageTitle}`,selectedFile,{
                 headers:{
@@ -63,7 +73,7 @@ export default function Rifas(){
                 const imageUrl = `https://fundacion-images-bucket.s3.amazonaws.com/${imageTitle}`
                 const resOrder = await axios.get('customer/getLastOrder')
                 const lastOrder = resOrder.data.data.orderNumber
-                console.log(lastOrder)
+                // console.log(lastOrder)
                 setFormData((prevData)=>({
                     ...prevData,
                     imgURL: imageUrl,
@@ -93,12 +103,16 @@ export default function Rifas(){
         }
         try {
             const response = await axios.post('customer/createCustomer',customerData)
-            console.log(response);
+            // console.log(response);
+            updateTickets();
             if(response && isMounted){
                 router.push('rifas/confirmacion')
             }
         }catch(e){
-            alert(e);
+            // alert(e);
+            if(e.code=11000){
+                alert('Este número de télefono ya esta registrado')
+            }
         }
     }
     const updateTickets = async()=>{
@@ -109,15 +123,14 @@ export default function Rifas(){
         }
         try {
             const response = await axios.put('ticket/updateStatus',ticketsData)
-            console.log(response)
+            // console.log(response)
         } catch(e){
-            console.log(e)
+            alert(e)
         }
     }
 
     const handleClickConfirm = () =>{
         createCustomer();
-        updateTickets();
     }
 
     const fetchData = async()=>{
@@ -154,12 +167,30 @@ export default function Rifas(){
         setFormData({ ...formData, tickets: updatedSelectedNumbers.map((num)=>num.id) })
     };
 
+    const handleTicketSearch = (event) => {
+        const value = event.target.value;
+        if(/^\d{0,4}$/.test(value)){
+            setSearchTicketValue(value);
+        }
+    }
+
+    const searchForTicket = () => {
+        if(searchTicketValue.length === 4){
+            const ticketFound = availableNums.find((item)=>(item.number)===searchTicketValue)
+            const repeated = tickets.find((item)=>(item.number)===searchTicketValue)
+            if(ticketFound.status==='available' && !repeated){
+                setTickets(prevTickets=>[...prevTickets,ticketFound]);
+            }
+        }
+    }
+
     const getRandomAvailableTicket = () =>{
         const availableTickets = availableNums.filter(item=>item.status === 'available');
         if (availableTickets.length > 0){
             const randomIndex = Math.floor(Math.random()*availableTickets.length);
             const randomTicket = availableTickets[randomIndex]
             setTickets(prevTickets=>[...prevTickets,randomTicket]);
+            setFormData(prevTickets=>({...prevTickets,tickets:[...prevTickets.tickets,randomTicket.id]}))
         }
     }
 
@@ -206,7 +237,6 @@ export default function Rifas(){
             setCurrentPage(currentPage+1);
         }
     };
-
     const handlePreviousPage = () => {
         if (currentPage > 1) {
             setCurrentPage(currentPage-1);
@@ -215,46 +245,46 @@ export default function Rifas(){
     return(
         <div>
             <Header/>
-            <main className="w-full p-0 scroll-smooth">
+            <main className="w-full p-0">
                 <section className="flex flex-col text-center bg-primary p-4" id="hero-rifas">
                     <h1 className="text-6xl text-terciary font-bold">RIFA iPhone 15 Pro Max</h1>
                     <h2 className="text-4xl text-secondary font-semibold">*15 de Junio</h2>
                     <h3 className="text-2xl text-secondary font-normal">Precio del Boleto: $50 Pesos</h3>
-                    <div className="grid grid-cols-3 gap-24 items-center justify-center mx-auto mt-4" >
-                        <div id="premioSegundo" className="flex flex-col text-center">
-                            <Image src={p2} className="rounded-2xl border-4 border-secondary shadow-xl" alt="p1" style={{width: "370px", height: "240px" ,objectFit: "cover"}}/>
-                            <h2 className="font-bold text-secondary text-3xl mt-4">Segundo Premio</h2>
-                            <p className="font-semibold text-secondary text-lg">$1000 Pesos</p>
-                        </div>
-                        <div id="premioMayor" className="flex flex-col text-center">
+                    <div className="md:grid md:grid-cols-3 flex flex-col overflow-x-auto md:gap-24 gap-6 md:items-center md:justify-center mx-auto md:mt-4" >
+                        <div id="premioMayor" className="md:flex md:flex-col text-center ">
                             <Image src={p1} className="rounded-2xl border-4 border-secondary shadow-xl" alt="p2" style={{width: "370px", height: "240px" ,objectFit: "cover"}}/>
                             <h2 className="font-bold text-secondary text-3xl mt-4">Premio Mayor</h2>
                             <p className="font-semibold text-secondary text-lg">iPhone 15 Pro Max</p>
                         </div>
-                        <div id="premioTercero" className="flex flex-col text-center">
+                        <div id="premioSegundo" className="md:flex md:flex-col text-center md:-order-1">
+                            <Image src={p2} className="rounded-2xl border-4 border-secondary shadow-xl" alt="p1" style={{width: "370px", height: "240px" ,objectFit: "cover"}}/>
+                            <h2 className="font-bold text-secondary text-3xl mt-4">Segundo Premio</h2>
+                            <p className="font-semibold text-secondary text-lg">$1000 Pesos</p>
+                        </div>
+                        <div id="premioTercero" className="md:flex md:flex-col text-center">
                             <Image src={p3} className="rounded-2xl border-4 border-secondary shadow-xl" alt="p3" style={{width: "370px", height: "240px" ,objectFit: "cover"}}/>
                             <h2 className="font-bold text-secondary text-3xl mt-4">Tercer Premio</h2>
                             <p className="font-semibold text-secondary text-lg">$500 Pesos</p>
                         </div>
                     </div>
                     <Link className="rounded-[20px] px-4 py-2 bg-secondary text-primary text-3xl mx-auto mt-4 font-bold hover:bg-blueGray duration-300" href="#form-rifa" scroll={true}>PARTICIPAR</Link>
-                    <button type="button" className="mt-4 border-4 border-terciary text-terciary font-semibold text-2xl mx-auto px-4 py-1 rounded-full hover:bg-terciary hover:text-primary duration-300">Mas Información</button>
+                    <button type="button" className="mt-4 border-4 border-terciary text-terciary font-semibold text-2xl mx-auto px-4 py-1 rounded-full hover:bg-terciary hover:text-primary duration-300" onClick={openModal}>Mas Información</button>
                 </section>
                 <section className="pt-24 pb-24 bg-primary justify-center items-center scroll-smooth" id="form-rifa">
-                    <div className="rounded-xl bg-terciary min-h-[400px] w-1/2 mx-auto">
+                    <div className="rounded-xl bg-terciary md:mx-auto mx-4 md:max-w-[750px] ">
                         {activeStep == 1 && (
                         <div className="flex flex-col justify-center align-middle items-center p-4 gap-2">
-                           <h1 className="font-bold text-5xl text-grayText">Comprar Boletos</h1>
+                           <h1 className="font-bold text-5xl text-grayText text-center">Comprar Boletos</h1>
                            <form className="flex flex-col" onSubmit={showDiv}>
-                            <label htmlFor="name" className="flex flex-col items-center align-middle">
+                            <label htmlFor="name" className="flex flex-col items-center align-middle mt-4 md:mt-0">
                                 <span className="text-primary text-3xl font-semibold">Nombre</span>
                                 <input type="text" placeholder="Nombre" id="name" name="name" required value={formData.name} onChange={handleChange} className="py-1 px-4 ml-3 mt-2 rounded-full bg-grayText placeholder:text-terciary focus:outline-secondary focus:ring-0 text-secondary" />
                             </label>
-                            <label htmlFor="lastName" className="flex flex-col items-center align-middle">
+                            <label htmlFor="lastName" className="flex flex-col items-center align-middle mt-4 md:mt-0">
                                 <span className="text-primary text-3xl font-semibold">Apellido</span>
                                 <input type="text" placeholder="Apellido" id="lastName" name="lastName" required value={formData.lastName} onChange={handleChange} className="py-1 px-4 ml-3 mt-2 rounded-full bg-grayText placeholder:text-terciary focus:outline-secondary focus:ring-0 text-secondary" />
                             </label>
-                            <label htmlFor="phone" className="flex flex-col items-center align-middle">
+                            <label htmlFor="phone" className="flex flex-col items-center align-middle mt-4 md:mt-0">
                                 <span className="text-primary text-3xl font-semibold">Número Telefónico</span>
                                 <input type="tel" placeholder="Número Telefónico" id="phone" name="phone" required value={formData.phone} onChange={handleChange} className="py-1 px-4 ml-3 mt-2 rounded-full bg-grayText placeholder:text-terciary focus:outline-secondary focus:ring-0 text-secondary" />
                             </label>
@@ -263,27 +293,36 @@ export default function Rifas(){
                         </div>
                         )}
                         {activeStep == 2 && (
-                        <div className="flex flex-col justify-center align-middle items-center p-4 gap-8">
-                           <h1 className="font-bold text-5xl text-grayText">Seleccionar Boletos</h1> 
-                           <div className="grid grid-cols-10 gap-2">
-                                {currentTickets.map((order)=>(
-                                    <button key={order.id} className="p-2 text-terciary bg-primary rounded-md focus:outline-secondary focus:ring focus:ring-secondary" style={{
-                                        color: getBackgroundColor(order.status),
-                                        cursor: order.status === 'available' ? 'pointer' : 'not-allowed'
-                                    }} onClick={()=>handleTicket(order)} disabled={order.status !== 'available' }>
-                                        {order.number}
-                                    </button>
-                                ))}
+                        <div className="flex flex-col justify-center align-middle items-center p-4 md:gap-8 gap-2">
+                           <h1 className="font-bold text-5xl text-grayText text-center">Seleccionar Boletos</h1> 
+                           <div className="overflow-x-auto my-4">
+                               <div className="grid md:grid-cols-10 grid-cols-5 gap-3 w-full">
+                                    {currentTickets.map((order)=>(
+                                        <button key={order.id} className="p-2 text-terciary bg-primary rounded-md focus:outline-secondary focus:ring focus:ring-secondary min-w-[6ch]" style={{
+                                            color: getBackgroundColor(order.status),
+                                            cursor: order.status === 'available' ? 'pointer' : 'not-allowed'
+                                        }} onClick={()=>handleTicket(order)} disabled={order.status !== 'available' }>
+                                            {order.number}
+                                        </button>
+                                    ))}
+                               </div>
                            </div>
-                           <div className="mx-auto flex flex-wrap" id="page-control">
+                           <div className="mx-auto flex flex-wrap mt-4 md:mt-0" id="page-control">
                                 <button onClick={handlePreviousPage} disabled={currentPage===1} className="text-secondary disabled:text-grayText"><ChevronLeftIcon className="size-6"/></button>
                                 <span className="text-primary font-semibold">Página {currentPage} de {totalPages}</span>
                                 <button onClick={handleNextPage} disabled={currentPage === totalPages} className="text-secondary disabled:text-grayText"><ChevronRightIcon className="size-6"/></button>
                            </div>
                            <div className="flex flex-col justify-center items-center">
-                            <h2 className="font-bold text-primary">Tickets Seleccionados</h2>
+                                <div id="tickets-buttons" className="flex md:flex-row flex-col justify-between md:gap-8 gap-4">
+                                    <div className="flex md:flex-row gap-2 mt-2">
+                                        <input id="search-tickets" type="text" className="bg-primary rounded-full p-2 font-semibold outline-secondary" placeholder="Buscar Boleto" value={searchTicketValue} onChange={handleTicketSearch} onKeyDown={(e)=>{if(e.key === "Enter") searchForTicket();}}></input>
+                                        <button className="my-auto" onClick={searchForTicket}><MagnifyingGlassCircleIcon className="size-8 text-secondary"/></button>
+                                    </div>
+                                    <button onClick={getRandomAvailableTicket} className="mt-2 bg-secondary text-primary font-semibold p-2 rounded-full">Generar Numero Aleatorio</button>
+                                </div>
+                                <h2 className="font-bold text-primary mt-5">Tickets Seleccionados</h2>
                                 {tickets.length > 0 ? (
-                                    <ul className="flex flex-row gap-2">
+                                    <ul className="grid md:grid-cols-10 grid-cols-5 gap-2 m-2">
                                     {tickets.map((ticket,index)=>(
                                         <div key={index} className="bg-secondary text-primary p-2 font-semibold rounded-md">{ticket.number}</div>
                                     ))}
@@ -291,18 +330,17 @@ export default function Rifas(){
                                 ):(
                                     <p className="font-bold text-primary">No Hay Tickets</p>
                                 )}
-                                <button onClick={getRandomAvailableTicket} className="mt-2 bg-secondary text-primary font-semibold p-2 rounded-full">Generar Numero Aleatorio</button>
                            </div>
                            <button className="items-center text-lg font-bold mx-auto bg-secondary rounded-full py-2 px-6 text-primary inline-flex align-middle justify-between mt-4" onClick={showDiv} disabled={tickets.length===0}>Continuar<ArrowRightIcon className="size-6 ml-4 inline-block"/></button>
                         </div>
                         )}
                         {activeStep === 3 && (
-                            <div className="flex flex-col justify-center align-middle items-center p-4 gap-8">
+                            <div className="flex flex-col justify-center align-middle items-center p-4 gap-8 text-center">
                                 <h1 className="font-bold text-5xl text-grayText">Confirmar Boletos</h1>
                                 <div className="flex flex-col">
-                                    <div className="flex flex-wrap gap-2">
+                                    <div className="flex md:flex-wrap flex-col md:flex-row gap-2 mx-auto">
                                         <h1 className="my-auto text-2xl text-primary font-bold">Boletos Seleccionados:</h1>
-                                        <ul className="flex flex-row gap-2">
+                                        <ul className="flex flex-row gap-2 mx-auto md:mx-0">
                                         {tickets.map((ticket,index)=>(
                                             <div key={index} className="bg-secondary text-primary p-2 font-semibold rounded-md">{ticket.number}</div>
                                         ))}
@@ -348,6 +386,7 @@ export default function Rifas(){
                     </div>
                 </section>
             </main>
+            <InfoRifa isOpen={isModalOpen} onClose={closeModal}/>
             <ContactFooter/>
             <Footer/>
         </div>

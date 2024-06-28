@@ -3,13 +3,15 @@ import React, { useEffect } from "react"
 import { useState } from "react"
 import Image from "next/image";
 import axios from "@/lib/axiosConfig";
+import CustomCheckbox from "./CustomCheckbox";
 export default function EditInfoModal ({isOpen,onClose,customerId}){
     const [customerData,setCustomerData] = useState({
         id: '',
         name: '',
         phone: '',
         tickets: [],
-        imgURL: ''
+        imgURL: '',
+        verified: null
     })
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -67,7 +69,8 @@ export default function EditInfoModal ({isOpen,onClose,customerId}){
                         </label>
                         <h3 className="text-center font-semibold text-primary text-xl">Transferencia</h3>
                         <Image src={customerData.imgURL} alt='Transfer Descripción' width={100} height={200}/>
-                        <button onClick={updateCustomer} className="p-2 text-lg bg-terciary rounded-full text-grayText font-semibold">Actualizar</button>
+                        <CustomCheckbox checked={customerData.verified}/>
+                        {/* <button onClick={updateCustomer} className="p-2 text-lg bg-terciary rounded-full text-grayText font-semibold">Actualizar</button> */}
                     </div>
                 </div>
             </div>

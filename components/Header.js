@@ -4,7 +4,7 @@ import Image from "next/image"
 import Link from "next/link"
 
 import logoCC from "../assets/img/logoNFA.png"
-import iconFb from "../assets/svg/facebook.svg"
+import iconFb from "@/assets/svg/facebook.svg"
 import iconWa from "../assets/svg/whatsapp.svg"
 import { useState } from "react"
 const Header=()=>{
@@ -16,7 +16,7 @@ const Header=()=>{
     return (
         <div id="header" className="flex md:flex-row flex-col p-5 bg-primary w-full">
             <div id="headerlogo" className="md:mr-auto mx-auto md:ml-0">
-                <Image src={logoCC} width={128} height={111}  alt="Logo FCC"/>
+                <Image src={logoCC} width={128} height='auto' alt="Logo FCC"/>
             </div>
             {!shouldHideDiv && (
             <div id="headersections" className="flex flex-wrap p-4">
@@ -29,8 +29,8 @@ const Header=()=>{
             </div>
             )}
             <div id="headersocials" className="flex md:flex-wrap flex-row md:mr-0 md:ml-auto mx-auto gap-7 my-auto">
-                <a href="https://www.facebook.com/profile.php?id=100044643034540" target="_blank" rel="noopener noreferrer"><Image src={iconFb} width={40} height={40} alt="Facebook Icon"/></a>
-                <a href="https://wa.me/526394650034?text=Quisiera%20mas%20informaci&oacute;n%20" target="_blank" rel="noopener noreferrer"><Image src={iconWa} width={40} height={40} alt="WhatsApp Icon"/></a>
+                <a href="https://www.facebook.com/profile.php?id=100044643034540" className="hover:fill-terciary" target="_blank" rel="noopener noreferrer"><Image src={iconFb} width={40} height='auto' alt="Facebook Icon"/></a>
+                <a href="https://wa.me/526394650034?text=Quisiera%20mas%20informaci&oacute;n%20" target="_blank" rel="noopener noreferrer"><Image src={iconWa} width={40} height='auto' alt="WhatsApp Icon"/></a>
             </div>
         </div>
     )

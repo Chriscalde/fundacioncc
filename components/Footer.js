@@ -10,7 +10,7 @@ export default function Footer(){
                 <span className="md:mr-2">&copy; Fundación Carlos Cuevas 2024 | </span>
                     Powered by {' '}
                 <span className=" ">
-                    <Image src={rLogo} alt="logo" width={80} height={60}></Image>
+                    <Image src={rLogo} alt="logo" width={80} height='auto'></Image>
                 </span>
         </a>
         </div>

@@ -14,7 +14,7 @@ export default function DashboardHeader(){
     return (
         <div id="header-dashboard" className="flex flex-row justify-between px-16 py-4 bg-primary">
             <div id="header-dashboard-logo">
-                <Image src={logoCC} width={80} height={60} alt="Logo Dashboard"/>
+                <Image src={logoCC} width={80} height='auto' alt="Logo Dashboard"/>
             </div>
             <div id="header-dashboard-icons" className="flex flex-row items-center gap-4">
                 <Link href="/dashboard">

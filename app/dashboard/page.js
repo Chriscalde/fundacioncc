@@ -41,6 +41,7 @@ export default function Dashboard(){
 
     const [searchTicketValue,setSearchTicketValue] = useState('')
     const [foundTicket,setFoundTicket] = useState(null);
+    const [foundTicketCustomer,setFoundTicketCustomer] = useState(null);
 
     const [searchQuery,setSearchQuery] = useState('');
 
@@ -64,11 +65,22 @@ export default function Dashboard(){
 
     const searchForTicket = () => {
         if(searchTicketValue.length === 4){
-            const foundTicket = ticketsInfo.find((item)=>(item.number)===searchTicketValue)
-            setFoundTicket(foundTicket)
+            const ticket = ticketsInfo.find((item)=>(item.number)===searchTicketValue)
+            // console.log('Ticket: '+foundTicket)
+            setFoundTicket(ticket)
+            setFoundTicketCustomer(findCustomerNameByTicket(customers,ticket._id));
         }
     }
 
+    const findCustomerNameByTicket = (customers,ticket) => {
+        for(const customer of customers){
+            if(customer.tickets.includes(ticket)){
+                return(customer.name);
+                // console.log(customer.name)
+            }
+        }
+        return(null);
+    }
     const openModal = (customerId) => {
         setIsModalOpen(true);
         setCustomerId(customerId);
@@ -104,16 +116,16 @@ export default function Dashboard(){
         try {
             const response = await axios.get('ticket/getAll')
             const data = response.data.data
-            console.log(data);
+            // console.log(data);
             const total = data.length;
             const sold = data.filter((item)=>item.status==='sold').length;
             const lastUpdated = data
                 .filter((item)=>item.status==='sold')
                 .reduce((latest,ticket)=>new Date(ticket.updatedAt)>new Date(latest.updatedAt) ? ticket:latest, {updatedAt: '1970-01-01T00:00:00Z'})
                 .number;
-            console.log(lastUpdated);
-            console.log(sold);
-            console.log(total);
+            // console.log(lastUpdated);
+            // console.log(sold);
+            // console.log(total);
             setTicketsData({
                 sold: sold,
                 total: total,
@@ -121,24 +133,25 @@ export default function Dashboard(){
             })
             setTicketsInfo(data);
         } catch(e){
-            console.log(e);
+            alert(e);
         }
     }
     const getCustomers = async()=>{
         try {
             const response = await axios.get('customer/getCustomers')
             const data = response.data.data
-            console.log(data);
+            // console.log(data);
             const filtered = data.map(item=>({
                 id: item._id,
                 name: item.name,
                 phone: item.phone,
                 orderNo: item.orderNumber,
-                verified: item.verified
+                verified: item.verified,
+                tickets: item.tickets
             }));
             setCustomers(filtered);
         } catch(e){
-            console.log(e);
+            alert(e);
         }
     }
     return (
@@ -149,11 +162,11 @@ export default function Dashboard(){
                     <section id="login-section">
                         <div className="flex flex-col p-10">
                             <h1 className="text-secondary text-5xl font-bold">Bienvenido {userData.name}</h1>
-                            <div id="buscar-cliente" className="align-right items-end mt-2 ml-auto">
+                            <div id="buscar-cliente" className="align-right items-end mt-2 ml-auto hidden md:block">
                                 <input type="search" placeholder="Buscar" className="p-2 rounded-lg font-semibold ring-secondary outline-secondary" value={searchQuery} onChange={handleSearch}></input>
                             </div>
                             <section id="dashboard-tables" className="md:grid md:grid-cols-5 flex flex-col gap-6 pt-6">
-                                <div id="dashboard-left-tables" className="flex flex-col justify-between gap-4  col-span-1">
+                                <div id="dashboard-left-tables" className="flex flex-col justify-between gap-4 col-span-1">
                                     <div id="dashboard-table-tickets" className="bg-grayText rounded-xl shadow-lg p-4 items-center align-middle text-center flex flex-col gap-4">
                                         <h1 className="text-terciary font-bold text-2xl ">Boletos</h1>
                                         <h2 className="text-primary font-semibold text-xl">{ticketsData.sold} de {ticketsData.total}</h2>
@@ -168,8 +181,12 @@ export default function Dashboard(){
                                             <div className="mt-2">
                                                 <div className={`font-semibold text-primary rounded-lg ${foundTicket.status==='sold'?'bg-secondary':'bg-terciary'}`}>{foundTicket.number}</div>
                                                 <div className="font-semibold text-terciary">{foundTicket.status==='sold'?'Vendido':'Disponible'}</div>
+                                                {foundTicketCustomer && (
+                                                    <div className="font-semibold text-terciary mt-2">{foundTicketCustomer}</div>
+                                                )}
                                             </div>
                                         )}
+                                        
 
                                     </div>
                                     <div id="dashboard-table-costs" className="bg-grayText rounded-xl shadow-lg p-4 text-center items-center align-middle flex flex-col gap-4">
@@ -177,6 +194,9 @@ export default function Dashboard(){
                                         <h2 className="text-primary font-semibold text-xl">Costo del Boleto: ${priceTicket}</h2>
                                         <h2 className="text-primary font-semibold text-xl">Total Recaudado: ${ticketsData.sold*priceTicket}</h2>
                                     </div>
+                                </div>
+                                <div id="buscar-cliente-mobile" className="align-right items-end mt-2 ml-auto md:hidden block">
+                                <input type="search" placeholder="Buscar" className="p-2 rounded-lg font-semibold ring-secondary outline-secondary" value={searchQuery} onChange={handleSearch}></input>
                                 </div>
                                 <div id="dashboard-right-table" className=" bg-grayText rounded-xl shadow-lg md:flex md:flex-col md:col-span-4 gap-2 overflow-x-auto">
                                     <h1 className="text-center text-terciary font-bold text-2xl">Clientes</h1>
