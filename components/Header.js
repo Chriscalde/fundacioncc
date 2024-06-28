@@ -6,6 +6,7 @@ import Link from "next/link"
 import logoCC from "../assets/img/logoNFA.png"
 import iconFb from "@/assets/svg/facebook.svg"
 import iconWa from "../assets/svg/whatsapp.svg"
+import '@/lib/fontawesome'
 import { useState } from "react"
 const Header=()=>{
     const [shouldHideDiv, setShouldHideDiv] = useState(false);
@@ -21,9 +22,9 @@ const Header=()=>{
             {!shouldHideDiv && (
             <div id="headersections" className="flex flex-wrap p-4">
                 <ul className="m-auto p-0 list-none flex font-semibold">
-                    <li className="relative whitespace-nowrap px-1"><Link href={"/landingpage/#"} className="duration-300 text-secondary hover:text-terciary">Inicio</Link></li>
+                    <li className="relative whitespace-nowrap px-1"><Link href={"/"} className="duration-300 text-secondary hover:text-terciary">Inicio</Link></li>
                     <li className="relative whitespace-nowrap px-1"><Link href={"/rifas"} className="duration-300 text-secondary hover:text-terciary">Rifas</Link></li>
-                    <li className="relative whitespace-nowrap px-1"><Link href={"/landingpage/#nosotros"} className="duration-300 text-secondary hover:text-terciary">Nosotros</Link></li>
+                    <li className="relative whitespace-nowrap px-1"><Link href={"/#nosotros"} className="duration-300 text-secondary hover:text-terciary">Nosotros</Link></li>
                     <li className="relative whitespace-nowrap px-1"><Link href={"#contact"} className="duration-300 text-secondary hover:text-terciary">Contacto</Link></li>
                 </ul>
             </div>
