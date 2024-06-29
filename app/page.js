@@ -19,6 +19,14 @@ const rifaInfo =({
 export default function LandingPage(){
     return (
         <div>
+            <Head>
+              <title>Fundación Carlos Cuevas</title>
+              <meta name="description"/>
+              <meta property="og:title" content="Página de Inicio"/>
+              <meta property="og:url" content="https://www.fundacioncarloscuevas.com"/>
+              <meta property="og:type" content="website"/>
+              <meta property="og:site_name" content="Fundación Carlos Cuevas"/>
+            </Head>
             <Header/>
             <section id="hero" className={styles.maindiv}>
                 <div className="justify-center text-center flex flex-col my-auto">

@@ -18,6 +18,7 @@ import {ArrowRightIcon, CameraIcon, ChevronRightIcon, ChevronLeftIcon, Magnifyin
 
 import { useState } from "react";
 import tailwindConfig from "@/tailwind.config";
+import Head from "next/head";
 import { useRouter } from "next/navigation";
 export default function Rifas(){
 
@@ -256,7 +257,16 @@ export default function Rifas(){
         }
     }
     return(
+        
         <div>
+            <Head>
+              <title>Compra de Boletos</title>
+              <meta name="description"/>
+              <meta property="og:title" content="Página de Rifas"/>
+              <meta property="og:url" content="https://www.fundacioncarloscuevas.com/rifas"/>
+              <meta property="og:type" content="website"/>
+              <meta property="og:site_name" content="Fundación Carlos Cuevas"/>
+            </Head>
             <Header/>
             <main className="w-full p-0">
                 
