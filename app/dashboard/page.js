@@ -54,10 +54,19 @@ export default function Dashboard(){
         setSearchQuery(event.target.value);
     }
 
-    const filteredCustomers = customers.filter(customer=>
-        customer.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        customer.phone.includes(searchQuery)
-    )
+    const filteredCustomers = searchCustomers(customers,searchQuery)
+    function searchCustomers(customers,searchQuery){
+        const lowerCaseQuery = searchQuery.toLowerCase();
+        const searchWords = lowerCaseQuery.split(' ');
+
+        return customers.filter(customer => {
+            const customerName = customer.name.toLowerCase();
+            const phoneMatches = customer.phone.includes(lowerCaseQuery);
+            const nameMatches = searchWords.every(word => customerName.includes(word));
+
+            return nameMatches || phoneMatches
+        })
+    }
     const handleTicket = (event) => {
         const value = event.target.value;
         if(/^\d{0,4}$/.test(value)){

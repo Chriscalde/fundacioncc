@@ -37,7 +37,7 @@ export default function Rifas(){
     useEffect(() => {
         fetchData();
         setIsMounted(true);
-        setRifaStatus('now')
+        setRifaStatus('soon')
     },[]);
     const handleFileChange = (event) => {
         setSelectedFile(event.target.files[0]);
