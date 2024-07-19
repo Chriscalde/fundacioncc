@@ -302,6 +302,7 @@ export default function Rifas(){
                         </div>
                     </div>
                     <Link className="rounded-[20px] px-4 py-2 bg-secondary text-primary text-3xl mx-auto mt-4 font-bold hover:bg-blueGray duration-300" href="#form-rifa" scroll={true}>PARTICIPAR</Link>
+                    <p className="my-2 font-semibold text-terciary">Antes de elegir tus boletos, debes tener a la mano tu transferencia o tu recibo de depósito, da click en <span className="font-bold underline">Mas Información</span> para saber mas información acerca del proceso.</p>
                     <button type="button" className="mt-4 border-4 border-terciary text-terciary font-semibold text-2xl mx-auto px-4 py-1 rounded-full hover:bg-terciary hover:text-primary duration-300" onClick={openModal}>Mas Información</button>
                 </section>
                         <section className="pt-24 pb-24 bg-primary justify-center items-center scroll-smooth" id="form-rifa">

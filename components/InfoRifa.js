@@ -32,6 +32,13 @@ export default function InfoRifa ({isOpen,onClose}){
                         <p className="text-xl font-bold text-primary mt-2">¿Cómo funciona la dinámica?</p>
                         <p className="text-lg font-semibold text-primary">La dinámica de la rifa consiste en que el día de la rifa será anunciado el ganador dependiendo de los números de la Lotería Nacional.</p>
                         <p className="text-lg font-semibold text-primary">Asegúrate de estar atento a la fecha de la rifa y revisa nuestras redes sociales para más información. ¡Buena suerte a todos los participantes!</p>
+                        <p className="text-lg font-semibold text-primary">Para poder elegir tus boletos deberas tener a la mano tu comprobante de pago, en caso de no tenerlo puedes hacer una transferencia o un depósito a la siguente cuenta.</p>
+                        <p className="text-lg font-semibold text-primary">Nombre del Titular: <span>Carlos Cuevas Acosta</span></p>
+                        <p className="text-lg font-semibold text-primary">Número de Tarjeta: <span>4189140050575827</span></p>
+                        <p className="text-lg font-semibold text-primary">CLABE Interbancaria: <span>072150012785162537</span></p>
+                        <p className="text-lg font-semibold text-primary">BANORTE</p>
+
+
                     </div>
                 </div>
             </div>
