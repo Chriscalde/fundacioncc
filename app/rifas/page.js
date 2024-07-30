@@ -20,6 +20,7 @@ import { useState } from "react";
 import tailwindConfig from "@/tailwind.config";
 import Head from "next/head";
 import { useRouter } from "next/navigation";
+import VideoPlayer from "@/components/VideoPlayer";
 export default function Rifas(){
 
     const [activeStep,setStep] = useState(1);
@@ -424,6 +425,9 @@ export default function Rifas(){
                                 </div>
                             )}
                         </div>
+                                        </section>
+                                        <section id="videoPlayer" className="flex flex-col bg-primary">
+                                            <VideoPlayer/>
                                         </section>
                     </div>
                 )}
