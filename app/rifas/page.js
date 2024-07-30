@@ -323,7 +323,7 @@ export default function Rifas(){
                                 </label>
                                 <label htmlFor="phone" className="flex flex-col items-center align-middle mt-4 md:mt-0">
                                     <span className="text-primary text-3xl font-semibold">Número Telefónico</span>
-                                    <input type="tel" placeholder="Número Telefónico" id="phone" name="phone" required value={formData.phone} onChange={handleChange} className="py-1 px-4 ml-3 mt-2 rounded-full bg-grayText placeholder:text-terciary focus:outline-secondary focus:ring-0 text-secondary" />
+                                    <input type="text" inputmode="numeric" placeholder="Teléfono (10 Dígitos)" maxlength="10" pattern="[0-9]*" id="phone" name="phone" required value={formData.phone} onChange={handleChange} className="py-1 px-4 ml-3 mt-2 rounded-full bg-grayText placeholder:text-terciary focus:outline-secondary focus:ring-0 text-secondary" />
                                 </label>
                                 <button type="submit" className="items-center text-lg font-bold mx-auto bg-secondary rounded-full py-2 px-6 text-primary inline-flex align-middle justify-between mt-8">Continuar<ArrowRightIcon className="size-6 ml-4 inline-block"/></button>
                                 </form>
