@@ -227,7 +227,8 @@ export default function Rifas(){
           case 'available':
             return '#1985A1'; // Color verde
           case 'sold':
-            return '#893737'; // Color rojo
+            return '#454851';
+             // Color rojo 454851 893737
           default:
             return '#46494C'; // Color blanco
         }
@@ -333,7 +334,7 @@ export default function Rifas(){
                                <div className="overflow-x-auto my-4">
                                    <div className="grid md:grid-cols-10 grid-cols-5 gap-3 w-full">
                                         {currentTickets.map((order)=>(
-                                            <button key={order.id} className="p-2 text-terciary bg-primary rounded-md focus:outline-secondary focus:ring focus:ring-secondary min-w-[6ch]" style={{
+                                            <button key={order.id} className={`p-2 text-terciary bg-primary rounded-md focus:outline-secondary focus:ring focus:ring-secondary min-w-[6ch] ${order.status === "available" ? "bg-primary" : 'bg-stone-600 text-primary'}`} style={{
                                                 color: getBackgroundColor(order.status),
                                                 cursor: order.status === 'available' ? 'pointer' : 'not-allowed'
                                             }} onClick={()=>handleTicket(order)} disabled={order.status !== 'available' }>
