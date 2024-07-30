@@ -60,6 +60,10 @@ export default function LandingPage(){
                 <div className="md:text-left text-center">
                     <h1 className="font-bold md:text-6xl text-4xl text-terciary">Próxima Rifa: {rifaInfo.date}*</h1>
                     <h3 className="font-semibold text-xl text-secondary">¡No te pierdas la oportunidad de hacer el bien y ganar premios emocionantes!</h3>
+                    <p className="text-lg font-semibold text-secondary">Para poder elegir tus boletos deberas tener a la mano tu comprobante de pago, en caso de no tenerlo<br/> puedes hacer una transferencia o un depósito a la siguente cuenta.</p>
+                                        <p className="text-lg font-semibold text-secondary">Nombre del Titular: <span>Carlos Cuevas Acosta</span></p>
+                                        <p className="text-lg font-semibold text-secondary">CLABE Interbancaria: <span>072150012785162537</span></p>
+                                        <p className="text-lg font-semibold text-secondary">BANORTE</p>
                 </div>
                 <div className="md:text-right text-center md:mt-5 text-terciary">
                     <h2 className="text-4xl font-semibold">Primer Lugar: iPhone 15 Pro</h2>

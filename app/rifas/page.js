@@ -382,6 +382,10 @@ export default function Rifas(){
                                             </ul>
                                         </div>
                                         <p className="text-2xl mt-6 text-primary font-bold">Nombre del Participante: {formData.name+" "+formData.lastName}</p>
+                                        <p className="text-lg font-semibold text-primary">Para poder elegir tus boletos deberas tener a la mano tu comprobante de pago, en caso de no tenerlo puedes hacer una transferencia o un depósito a la siguente cuenta.</p>
+                                        <p className="text-lg font-semibold text-primary">Nombre del Titular: <span>Carlos Cuevas Acosta</span></p>
+                                        <p className="text-lg font-semibold text-primary">CLABE Interbancaria: <span>072150012785162537</span></p>
+                                        <p className="text-lg font-semibold text-primary">BANORTE</p>
                                         <p className="text-2xl mt-6 text-primary font-bold"> Para continuar, sube una foto de tu comprobante de pago</p>
                                         <div className="flex flex-wrap mt-3">
                                             <input
