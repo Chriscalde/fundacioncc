@@ -1,7 +1,7 @@
 import { Inter } from "next/font/google";
 import "./globals.css";
 const inter = Inter({ subsets: ["latin"] });
-
+import {Analytics} from "@vercel/analytics/react"
 export const metadata = {
   title: "Fundación Carlos Cuevas",
   description: "Próximamente",
@@ -19,7 +19,8 @@ export default function RootLayout({ children }) {
       <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"/>
       <meta name="msapplication-TileColor" content="#da532c"/>
       <meta name="theme-color" content="#dcdcdd"/>
-      <body className={inter.className}>{children}</body>
+      <body className={inter.className}>{children}<Analytics/></body>
+      
     </html>
   );
 }
