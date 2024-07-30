@@ -13,11 +13,11 @@ export default function InfoRifa ({isOpen,onClose}){
                         <h3 className="font-bold text-xl text-primary md:col-start-2 text-nowrap">Información de la Rifa</h3>
                         <button onClick={onClose} className="text-secondary ml-auto"><XMarkIcon className="size-4 bg-primary rounded-full  cursor-pointer"/></button>
                     </div>
-                        <p className="text-xl font-semibold text-grayText">Rifa del 15 de Junio</p>
+                        <p className="text-xl font-semibold text-grayText">Rifa del 6 de Agosto</p>
                         <div className="flex flex-row justify gap-8 ">
                             <div>
-                                <p className="text-lg font-semibold text-primary">Premio Mayor</p>
-                                <p className="text-lg font-semibold text-primary">iPhone 15 Pro Max</p>
+                                <p className="text-lg font-semibold text-primary">Primer Lugar</p>
+                                <p className="text-lg font-semibold text-primary">iPhone 15 Pro</p>
                             </div>
                             <div>
                                 <p className="text-lg font-semibold text-primary">Segundo Premio</p>
@@ -30,11 +30,11 @@ export default function InfoRifa ({isOpen,onClose}){
                         </div>
                         <p className="text-md font-semibold text-primary">Costo del Boleto: $50 pesos</p>
                         <p className="text-xl font-bold text-primary mt-2">¿Cómo funciona la dinámica?</p>
-                        <p className="text-lg font-semibold text-primary">La dinámica de la rifa consiste en que el día de la rifa será anunciado el ganador dependiendo de los números de la Lotería Nacional.</p>
+                        <p className="text-lg font-semibold text-primary">La dinámica de la rifa consiste en que el día de la rifa será anunciado el ganador dependiendo de los números ganadores del Sorteo Mayor de la Lotería Nacional.</p>
                         <p className="text-lg font-semibold text-primary">Asegúrate de estar atento a la fecha de la rifa y revisa nuestras redes sociales para más información. ¡Buena suerte a todos los participantes!</p>
                         <p className="text-lg font-semibold text-primary">Para poder elegir tus boletos deberas tener a la mano tu comprobante de pago, en caso de no tenerlo puedes hacer una transferencia o un depósito a la siguente cuenta.</p>
                         <p className="text-lg font-semibold text-primary">Nombre del Titular: <span>Carlos Cuevas Acosta</span></p>
-                        <p className="text-lg font-semibold text-primary">Número de Tarjeta: <span>4189140050575827</span></p>
+                        {/* <p className="text-lg font-semibold text-primary">Número de Tarjeta: <span>4189140050575827</span></p> */}
                         <p className="text-lg font-semibold text-primary">CLABE Interbancaria: <span>072150012785162537</span></p>
                         <p className="text-lg font-semibold text-primary">BANORTE</p>
 

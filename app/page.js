@@ -14,7 +14,7 @@ import pic2 from "/assets/img/pic2.jpg"
 import pic3 from "/assets/img/pic3.jpg"
 
 const rifaInfo =({
-  date: "Fecha aún por definir",
+  date: "Martes 6 de Agosto del 2024",
 })
 export default function LandingPage(){
     return (
@@ -61,11 +61,11 @@ export default function LandingPage(){
                     <h1 className="font-bold md:text-6xl text-4xl text-terciary">Próxima Rifa: {rifaInfo.date}*</h1>
                     <h3 className="font-semibold text-xl text-secondary">¡No te pierdas la oportunidad de hacer el bien y ganar premios emocionantes!</h3>
                 </div>
-                {/* <div className="md:text-right text-center md:mt-5 text-terciary">
-                    <h2 className="text-4xl font-semibold">Premio Mayor: iPhone 15 Pro Max</h2>
+                <div className="md:text-right text-center md:mt-5 text-terciary">
+                    <h2 className="text-4xl font-semibold">Primer Lugar: iPhone 15 Pro</h2>
                     <h2 className="text-3xl font-light">Segundo Premio: $1000 Pesos</h2>
                     <h2 className="text-3xl font-light">Tercer Premio: $500 Pesos</h2>
-                </div> */}
+                </div>
                 <div className="p-8 text-center md:text-right">
                     <Link href="/rifas" className="mt-10 rounded-full py-2 px-6 border-2 border-secondary text-secondary hover:bg-secondary hover:text-primary duration-300 font-bold text-2xl">Boletos</Link>
                 </div>

@@ -54,7 +54,7 @@ export default function LandingPage(){
                     <h3 className="font-semibold text-xl text-secondary">¡No te pierdas la oportunidad de hacer el bien y ganar premios emocionantes!</h3>
                 </div>
                 <div className="md:text-right text-center md:mt-5 text-terciary">
-                    <h2 className="text-4xl font-semibold">Premio Mayor: iPhone 15 Pro Max</h2>
+                    <h2 className="text-4xl font-semibold">Primer Lugar: iPhone 15 Pro </h2>
                     <h2 className="text-3xl font-light">Segundo Premio: $1000 Pesos</h2>
                     <h2 className="text-3xl font-light">Tercer Premio: $500 Pesos</h2>
                 </div>

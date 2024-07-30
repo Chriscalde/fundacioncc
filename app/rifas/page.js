@@ -38,7 +38,7 @@ export default function Rifas(){
     useEffect(() => {
         fetchData();
         setIsMounted(true);
-        setRifaStatus('soon')
+        setRifaStatus('now')
     },[]);
     const handleFileChange = (event) => {
         setSelectedFile(event.target.files[0]);
@@ -281,14 +281,14 @@ export default function Rifas(){
                 {rifaStatus==='now' && (
                     <div>
                         <section className="flex flex-col text-center bg-primary p-4" id="hero-rifas">
-                    <h1 className="text-6xl text-terciary font-bold">RIFA iPhone 15 Pro Max</h1>
-                    <h2 className="text-4xl text-secondary font-semibold">*15 de Junio</h2>
+                    <h1 className="text-6xl text-terciary font-bold">RIFA iPhone 15 Pro</h1>
+                    <h2 className="text-4xl text-secondary font-semibold">Martes 6 de Agosto del 2024</h2>
                     <h3 className="text-2xl text-secondary font-normal">Precio del Boleto: $50 Pesos</h3>
                     <div className="md:grid md:grid-cols-3 flex flex-col overflow-x-auto md:gap-24 gap-6 md:items-center md:justify-center mx-auto md:mt-4" >
                         <div id="premioMayor" className="md:flex md:flex-col text-center ">
                             <Image src={p1} className="rounded-2xl border-4 border-secondary shadow-xl" alt="p2" style={{width: "370px", height: "240px" ,objectFit: "cover"}}/>
-                            <h2 className="font-bold text-secondary text-3xl mt-4">Premio Mayor</h2>
-                            <p className="font-semibold text-secondary text-lg">iPhone 15 Pro Max</p>
+                            <h2 className="font-bold text-secondary text-3xl mt-4">Primer Lugar</h2>
+                            <p className="font-semibold text-secondary text-lg">iPhone 15 Pro </p>
                         </div>
                         <div id="premioSegundo" className="md:flex md:flex-col text-center md:-order-1">
                             <Image src={p2} className="rounded-2xl border-4 border-secondary shadow-xl" alt="p1" style={{width: "370px", height: "240px" ,objectFit: "cover"}}/>

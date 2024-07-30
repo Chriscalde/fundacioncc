@@ -78,8 +78,13 @@ export default function Dashboard(){
         if(searchTicketValue.length === 4){
             const ticket = ticketsInfo.find((item)=>(item.number)===searchTicketValue)
             // console.log('Ticket: '+foundTicket)
+            if(!ticket){
+                alert('El ticket no existe')
+            }
+            else{
             setFoundTicket(ticket)
             setFoundTicketCustomer(findCustomerNameByTicket(customers,ticket._id));
+            }
         }
     }
 
