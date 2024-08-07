@@ -71,7 +71,7 @@ export default function LandingPage(){
                     <h2 className="text-3xl font-light">Tercer Premio: $500 Pesos</h2>
                 </div>
                 <div className="p-8 text-center md:text-right">
-                    <Link href="/rifas" className="mt-10 rounded-full py-2 px-6 border-2 border-secondary text-secondary hover:bg-secondary hover:text-primary duration-300 font-bold text-2xl">Boletos</Link>
+                    {/* <Link href="/rifas" className="mt-10 rounded-full py-2 px-6 border-2 border-secondary text-secondary hover:bg-secondary hover:text-primary duration-300 font-bold text-2xl">Boletos</Link> */}
                 </div>
             </section>
             <section id="nosotros" className="bg-terciary p-8 text-primary">

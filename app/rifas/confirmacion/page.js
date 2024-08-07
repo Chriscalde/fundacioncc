@@ -1,4 +1,5 @@
-import React from "react";
+'use client'
+import React, {useEffect} from "react";
 import Header from "@/components/Header";
 import ContactFooter from "@/components/ContactFooter";
 import Footer from "@/components/Footer";
@@ -8,8 +9,14 @@ import Image from "next/image";
 import Link from "next/link";
 
 import iconFb from "@/assets/svg/facebook.svg"
+// import { useEffect } from "react";
+import { useRouter } from "next/navigation";
 
 export default function Confirmacion(){
+    // useEffect(()=>{
+    //     const router = useRouter();
+    //     router.push('../');
+    // },[])
     return (
         <div>
             <Header/>

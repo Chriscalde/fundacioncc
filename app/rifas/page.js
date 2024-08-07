@@ -435,7 +435,7 @@ export default function Rifas(){
                     <div className="h-[80vh] w-auto  flex flex-col align-middle items-center">
                     <div className="mx-auto my-auto text-center p-2">
                         <h1 className="md:text-8xl text-5xl font-extrabold text-secondary">Rifa Terminada</h1>
-                        <h1 className="md:text-4xl text-2xl font-semibold text-terciary">La rifa ha terminado, checa nuestras redes sociales para los números ganadores</h1>
+                        <h1 className="md:text-4xl text-2xl font-semibold text-terciary">La rifa ha terminado, revisa en la página web de la Loteria Nacional los números ganadores del Sorteo Mayor #3938</h1>
                     </div>
                 </div>
                 )}
